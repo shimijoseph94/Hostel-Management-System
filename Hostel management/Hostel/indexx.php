@@ -1,0 +1,244 @@
+<style>
+	.rc-anchor-normal .rc-anchor-content{
+		max-width:148px;
+	}
+	.rc-anchor-normal .rc-anchor-checkbox-label{
+		max-width:95px !importent;
+	}
+	.rc-anchor-normal{
+		width:237px;
+	}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<?php
+include 'connection.php';
+if(isset($_POST['submit']))
+{
+	
+	$Username=$_POST["username"];   //username value from the form
+	//$Password=sha1($_POST["password"]);	//password value from the form
+	//echo $username;
+	$Password=$_POST["password"];
+	$sql="select * from login where Username='$Username' and Password='$Password'"; //value querried from the table
+	$res=mysqli_query($con,$sql);  //query executing function
+	//echo $res;
+	
+	if($fetch=mysqli_fetch_array($res))
+	{
+	if($fetch['role']== 2) // role means user , for admin set to 1 and for user set to  
+	{
+	
+		$_SESSION["Username"]=$fetch['Username'];	// setting username as session variable 
+	header("location:dashboard1.php");	
+	//home page or the dashboard page to be redirected
+	}
+	else if($fetch['role']== 1) // role means admin, for admin set to 1 and for user set to  
+		{
+		$_SESSION["Username"]=$Username;	// setting username as session variable 
+	    header("location:dashboard.php");
+		}
+		else if($fetch['role']== 3) 
+		{
+		$_SESSION["Username"]=$Username;	
+	    header("location:dashboard3.php");
+		
+	}
+	}
+	
+}?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>St Marys</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="style.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="contentslider.css" />
+<!--<script src="https://www.google.com/recaptcha/api.js" async defer></script>-->
+<script type="text/javascript" src="contentslider.js"></script>
+<!--[if lt IE 7]><style type="text/css">.thumb_box span { behavior: url(iepngfix.htc); }</style><![endif]-->
+</head>
+<body>
+<div id="google_translate_element"></div>
+
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+}
+</script>
+
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+<div id="container">
+  <div id="header_panel">
+    <div id="title_section"> St Marys</div>
+    <div id="top_right_section">
+      <!--<ul>
+        <li><a href="http://all-free-download.com/free-website-templates/">Home</a></li>
+        <li><a href="http://all-free-download.com/free-website-templates/">Site Map</a></li>
+        <li><a href="http://all-free-download.com/free-website-templates/">Contact</a></li>
+      </ul>-->
+    </div>
+  </div>
+  <div id="login_banner_panel">
+    <div id="banner_panel">
+      <div id="paginate-slider2" class="pagination"> <a href="http://all-free-download.com/free-website-templates/" class="toc">&nbsp;</a> <a href="http://all-free-download.com/free-website-templates/" class="toc anotherclass">&nbsp;</a> <a href="http://all-free-download.com/free-website-templates/" class="toc">&nbsp;</a> </div>
+      <div id="slider2" class="sliderwrapper">
+        <div class="contentdiv"><img src="images/n.jpg" alt="" /></div>
+        <div class="contentdiv"><img src="images/o.jpg" alt="" /></div>
+        <div class="contentdiv"><img src="images/u.jpg" alt="" /></div>
+      </div>
+      <script type="text/javascript">
+            featuredcontentslider.init({
+            id: "slider2",
+            contentsource: ["inline", ""],
+            toc: "markup",
+            nextprev: ["Previous", "Next"],
+            revealtype: "click",
+            enablefade: [true, 0.2],
+            autorotate: [true, 3000],
+            onChange: function(previndex, curindex){
+            }
+            })
+            </script>
+			<script src="js/val.js"></script>
+    </div>
+    <div id="login_panel">
+      <h1> Login</h1>
+      <form method="post" id="signin_form" action="" onsubmit="return capval()">
+        <div class="form_row" >
+          <label>Username</label>
+          <input class="inputfield" name="username" type="text" id="username"/>
+		  <span class="cd-error-message" id="signin-username_error"></span>
+        </div>
+        <div class="form_row">
+          <label>Password</label>
+          <input class="inputfield" name="password" type="password" id="password"/>
+		  <span class="cd-error-message" id="signin-password_error"></span>
+        </div>
+		 <span class="g-recaptcha" data-sitekey="6Lcb5kAUAAAAAIpiNjj5FlF1teVIo9EqAMbLE7ap"></span>
+		 <span class="cd-error-message" id="signin-captcha_error"></span>
+        <input class="button" type="submit" name="submit" value="submit" />
+      </form>
+      <a href="http://all-free-download.com/free-website-templates/"></a> </div>
+  </div>
+  <div id="menu">
+    <ul>
+      <li><a href="indexx.php" class="current">Home</a></li>
+      
+      <li><a href="Registration.php">Register</a></li>
+      <!--<li><a href="http://all-free-download.com/free-website-templates/">Members</a></li>
+      <li><a href="http://all-free-download.com/free-website-templates/">Contests</a></li>
+      <li><a href="http://all-free-download.com/free-website-templates/">About Us</a></li>
+      <li  class="last"><a href="http://all-free-download.com/free-website-templates/">Contact Us</a></li>-->
+    </ul>
+  </div>
+  <div id="content">
+    <div id="leftcolumn">
+      <div class="leftcolumn_twocolumn">
+        <h1>Welcome</h1>
+        <img src="images/l.jpg" alt="" />
+        <p>The tropical breeze that blows through the windows allows for a cool but comfortable temperature in the rooms. Two rooms has additional air conditioning.
+
+As one of the highest buildings in the neighborhood, La Creole will surely catch you eye.The  campus hostel St Marys for and Amala for ladies, are taken care of by dedicated Catholic and Nuns. </p>
+      </div>
+      <div class="leftcolumn_twocolumn">
+        <h1>Our Services</h1>
+        <div class="service_box"> <img src="images/image_02.jpg" alt="" />
+      </p>
+        </div>
+        <ul>
+          <li><a href="http://all-free-download.com/free-website-templates/">STD / ISD  Telephone Facilities are available</a></li>
+          <li><a href="http://all-free-download.com/free-website-templates/">Exclusive uninterrupted study room for students after college hours</a></li>
+          <li><a href="http://all-free-download.com/free-website-templates/">Banking Facility with ATM counter.</a></li>
+          <li><a href="http://all-free-download.com/free-website-templates/"> Medical facility available with free medicines .</a></li>
+          <li><a href="http://all-free-download.com/free-website-templates/">Mineral water provided to all the rooms</a></li>
+        </ul>
+      </div>
+      <div class="cleaner"> &nbsp; </div>
+      <div class="leftcolumn_fullrow">
+        <h1>Photo Gallery</h1>
+        <p>This free CSS template is provided by TemplateMo.com website. Feel free to download, modify and apply this layout for your personal or commercial websites.</p>
+        <div class="thumb_gallery">
+          <div class="thumb_box"> <img src="images/hostel images/i.jpg" alt="" /> <span></span> </div>
+          <div class="thumb_box"> <img src="images/hostel images/a.jpg" alt="" /> <span></span> </div>
+          <div class="thumb_box"> <img src="images/hostel images/r.jpeg" alt="" /> <span></span> </div>
+          <div class="thumb_box"> <img src="images/hostel images/rooms.jpg" alt="" /> <span></span> </div>
+          <div class="thumb_box"> <img src="images/hostel images/ef.jpeg" alt="" /> <span></span> </div>
+          <div class="thumb_box"> <img src="images/hostel images/u.jpg" alt="" /> <span></span> </div>
+          <div class="thumb_box"> <img src="images/hostel images/p.jpg" alt="" /> <span></span> </div>
+          <div class="thumb_box"> <img src="images/hostel images/hostel1.jpg" alt="" /> <span></span> </div>
+        </div>
+      </div>
+    </div>
+    <div id="rightcolumn">
+	<div id="templatemo_middle">
+    
+    	<div id="intro">
+        	<!--<h2>Lorem ipsum dolor sit amet adipiscing</h2>-->
+            <p>One of the star attractions of St Marys Host is the excellent hostel facility. The  campus hostel St Marys for  for ladies, are taken care of by dedicated Catholic and Nuns. There is telephonic access to all rooms and 610 Mbps WiFi Connectivity inside the hostel. Affectionate discipline, tasty food at moderate rates and neat rooms with modern sanitation and professional laundry services are the hallmarks of the St Marys hostel..</p>
+            <a class="learn_more" href="#"></a>
+        </div>
+     <!-- <div id="search_panel">
+        <h1>Search</h1>
+        <form method="get" action="http://all-free-download.com/free-website-templates/">
+          <div class="search_panel_box">
+            <div class="form_row">
+              <label>By Keyword</label>
+              <input class="inputfield" name="keyword" type="text" id="keyword"/>
+            </div>
+            <input type="submit" name="submit" class="button" value="Search" />
+          </div>
+          <div class="search_panel_box">
+            <div class="form_row">
+              <label>By Category</label>
+              <select name="Category">
+                <option value="volvo">People</option>
+                <option value="saab">Animals</option>
+                <option value="fiat">Building</option>
+                <option value="audi">Flowers</option>
+              </select>
+            </div>
+            <input type="submit" name="submit" class="button" value="Search" />
+          </div>-->
+        </form>
+      </div>
+      <div id="blog_section">
+        <h1>Blog</h1>
+        <div class="blog_box">
+          <h4><a href="http://all-free-download.com/free-website-templates/">Pellentesque consequat condimentum risus</a></h4>
+          Posted by <a href="http://all-free-download.com/free-website-templates/"><span>Dolor Sit Amet</span></a> in <a href="http://all-free-download.com/free-website-templates/"><span>Duis vitae</span></a><br />
+          Aliquam pretium porta odio. Fusce quis diam sit amet tortor luctus pellentesque.<br />
+          <div class="datetime">Dec 12, 2024 2:54 pm</div>
+        </div>
+        <div class="blog_box">
+          <h4><a href="http://all-free-download.com/free-website-templates/">Quisque tincidunt commodo nisl</a></h4>
+          Posted by <a href="http://all-free-download.com/free-website-templates/"><span>Dolor Sit Amet</span></a> in <a href="http://all-free-download.com/free-website-templates/"><span>Duis vitae</span></a><br />
+          Morbi rutrum. Cras nulla sem, posuere non, molestie ut, molestie in, justo.<br />
+          <div class="datetime">Dec 15, 2024 4:32 pm</div>
+        </div>
+        <div class="blog_box">
+          <h4><a href="http://all-free-download.com/free-website-templates/">Lorem ipsum dolor sit amet</a></h4>
+          Posted by <a href="http://all-free-download.com/free-website-templates/"><span>Dolor Sit Amet</span></a> in <a href="http://all-free-download.com/free-website-templates/"><span>Duis vitae</span></a><br />
+          Lorem ipsum dolor sit amet, adipiscing elit.<br />
+          <div class="datetime">Dec 19, 2024 8:24 pm</div>
+        </div>
+        <div class="more_button"><a href="http://all-free-download.com/free-website-templates/">View All</a></div>
+      </div>
+      <div class="cleaner">&nbsp;</div>
+      <a target="_blank" href="http://validator.w3.org/check?uri=referer"><img style="border:0;width:88px;height:31px" src="http://www.w3.org/Icons/valid-xhtml10" alt="" width="88" height="31" vspace="8" border="0" /></a> <a target="_blank" href="http://jigsaw.w3.org/css-validator/check/referer?profile=css3"><img style="border:0;width:88px;height:31px"  src="http://jigsaw.w3.org/css-validator/images/vcss-blue" alt="" vspace="8" border="0" /></a>
+      <div class="cleaner">&nbsp;</div>
+    </div>
+  </div>
+  <div id="footer"> <a href="http://all-free-download.com/free-website-templates/">Home</a> | <a href="http://all-free-download.com/free-website-templates/">About Us</a> | <a href="http://all-free-download.com/free-website-templates/">Gallery</a> | <a href="http://all-free-download.com/free-website-templates/">Tutorials</a> | <a href="http://all-free-download.com/free-website-templates/">FAQs</a> | <a href="http://all-free-download.com/free-website-templates/">Contact Us</a><br />
+    Copyright © 2024 <a href="http://all-free-download.com/free-website-templates/"><strong>Your Company Name</strong></a> | Designed by <a href="http://www.templatemo.com">Free CSS Template</a> </div>
+</div>
+<div align=center>This template  downloaded form <a href='http://all-free-download.com/free-website-templates/'>free website templates</a></div></body>
+<script>
+	function capval(){
+		var v=grecaptcha.getResponse();
+		if(v.length==0){
+			return false;
+		}
+	}
+</script>
+</html>

@@ -1,0 +1,21 @@
+function mob()
+{
+        var x = document.getElementById('phone').value;
+	 // var x=document.phone.value;
+        if(isNaN(x)|| x.indexOf(" ")!=-1){
+              alert("Enter numeric value");return false; }
+        if (x.length > 10 || x.length < 10 ){
+                alert("enter 10  digits"); return false;
+           }
+       // if (x.charAt(0)!="9" || x.charAt(0)!="2"){
+               // alert("it should start with 9 or 2 ");
+                //return false
+           //}
+}
+
+
+
+<tr>
+    <td>Contact No</td>
+    <td style="padding: 20px;"><input type="text" name="contactno" id="phone" onChange="mob();"/></td>
+  </tr>
